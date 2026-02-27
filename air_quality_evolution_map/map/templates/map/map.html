@@ -1,0 +1,24 @@
+{% extends "base.html"%}
+{% load static %}
+
+{% block extra_head %}
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+{% endblock %}
+
+
+
+{% block content %}
+	<div id="map">
+		mapa
+	</div>
+	<div id="legend">
+	<ul>
+		<li>Bardzo dobry</li>
+		<li>Dobry</li>
+		<li>Średni</li>
+		<li>Zły</li>
+		<li>Bardzo zły</li>
+	</ul>
+</div>
+{% endblock %}

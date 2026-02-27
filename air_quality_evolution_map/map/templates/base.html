@@ -1,0 +1,25 @@
+{% load static %}
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	{% block extra_head %}
+	{% endblock %}
+</head>
+<body>
+	<header>
+		<div id="header-text">
+			Air Quality Evolution Map
+		</div>
+	</header>
+	<main>
+        {% block content %}
+        {% endblock %}
+	</main>
+	<footer>
+		<div id="footer-text">
+			&copy; Dziekujemy za wizytę! Wszelkie prawa zastrzeżone.
+		</div>
+	</footer>
+</body>
+</html>
