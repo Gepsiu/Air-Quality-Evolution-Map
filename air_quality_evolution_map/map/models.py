@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Measurement(models.Model):
-    id = models.BigAutoField(primary_key=True)
+    id = models.IntegerField(primary_key=True)
     pollutant = models.CharField(max_length=20)
     measurement_date = models.DateField()
     station = models.CharField(max_length=30)
