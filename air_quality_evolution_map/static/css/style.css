@@ -34,8 +34,9 @@ main {
 	width: 75%;
 }
 
-#legend {
+#info_panel {
 	width: 25%;
+	background: #efefef;
 }
 
 footer {

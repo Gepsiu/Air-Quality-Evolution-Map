@@ -2,23 +2,34 @@
 {% load static %}
 
 {% block extra_head %}
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 {% endblock %}
 
 
-
 {% block content %}
-	<div id="map">
-		mapa
-	</div>
-	<div id="legend">
-	<ul>
-		<li>Bardzo dobry</li>
-		<li>Dobry</li>
-		<li>Średni</li>
-		<li>Zły</li>
-		<li>Bardzo zły</li>
-	</ul>
+
+<div id="map">
+   mapa
+</div>
+<div id="info_panel">
+    <h3>Zanieczyszczenia</h3>
+    <div id="pollution">
+        <ul>
+            <li>indeks SO2</li>
+            <li>indeks NO2</li>
+            <li>indeks CO</li>
+            e
+        </ul>
+    </div>
+    <div id="legend">
+        <ul>
+            <li>Bardzo dobry</li>
+            <li>Dobry</li>
+            <li>Średni</li>
+            <li>Zły</li>
+            <li>Bardzo zły</li>
+        </ul>
+    </div>
 </div>
 {% endblock %}
