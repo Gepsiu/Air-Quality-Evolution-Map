@@ -8,9 +8,18 @@
 
 
 {% block content %}
-
+{{ geojson|json_script:"geojson-data" }}
 <div id="map">
-   mapa
+    <script>
+        const map = L.map('map').setView([52.11, 19.21], 6.2);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
+        }).addTo(map);
+        const geojsonData = JSON.parse(
+         document.getElementById("geojson-data").textContent
+        );
+        L.geoJSON(geojsonData).addTo(map);
+    </script>
 </div>
 <div id="info_panel">
     <h3>Zanieczyszczenia</h3>
