@@ -1,0 +1,213 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "dolnoslaskie"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.900,
+          51.090
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "kujawsko_pomorskie"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.520,
+          53.070
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "lubelskie"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.570,
+          51.250
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "lubuskie"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.230,
+          52.230
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "lodzkie"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          19.370,
+          51.600
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "malopolskie"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          20.060,
+          49.880
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "mazowieckie"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          20.990,
+          52.320
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "opolskie"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.930,
+          50.670
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "podkarpackie"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.000,
+          49.990
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "podlaskie"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.960,
+          53.150
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "pomorskie"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.300,
+          54.210
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "slaskie"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          19.000,
+          50.250
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "swietokrzyskie"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          20.630,
+          50.880
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "warminsko_mazurskie"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          20.480,
+          53.900
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "wielkopolskie"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.280,
+          52.280
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "zachodniopomorskie"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.500,
+          53.430
+        ]
+      }
+    }
+  ]
+}
