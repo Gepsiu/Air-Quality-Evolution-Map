@@ -23,6 +23,7 @@ class MonthlyMeasurement(models.Model):
     class Meta:
         managed = False
         db_table = "monthly_measurement"
+        indexes = [models.Index(fields=["station", "pollutant", "month_start"], name="idx_monthly_measurement")]
 
 
 class YearlyMeasurement(models.Model):
@@ -35,3 +36,4 @@ class YearlyMeasurement(models.Model):
     class Meta:
         managed = False
         db_table = "yearly_measurement"
+        indexes = [models.Index(fields=["station", "pollutant", "year_start"], name="idx_yearly_measurement")]
