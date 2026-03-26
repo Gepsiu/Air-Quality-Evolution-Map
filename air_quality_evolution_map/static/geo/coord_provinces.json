@@ -4,7 +4,7 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "dolnoslaskie"
+        "name": "dolnośląskie"
       },
       "geometry": {
         "type": "Point",
@@ -17,7 +17,7 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "kujawsko_pomorskie"
+        "name": "kujawsko-pomorskie"
       },
       "geometry": {
         "type": "Point",
@@ -56,7 +56,7 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "lodzkie"
+        "name": "łódzkie"
       },
       "geometry": {
         "type": "Point",
@@ -69,7 +69,7 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "malopolskie"
+        "name": "małopolskie"
       },
       "geometry": {
         "type": "Point",
@@ -147,7 +147,7 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "slaskie"
+        "name": "śląskie"
       },
       "geometry": {
         "type": "Point",
@@ -160,7 +160,7 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "swietokrzyskie"
+        "name": "świętokrzyskie"
       },
       "geometry": {
         "type": "Point",
@@ -173,7 +173,7 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "warminsko_mazurskie"
+        "name": "warmińsko-mazurskie"
       },
       "geometry": {
         "type": "Point",
