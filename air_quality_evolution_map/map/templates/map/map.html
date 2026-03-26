@@ -31,21 +31,94 @@
 <div id="info_panel">
     <h3>Zanieczyszczenia</h3>
     <div id="pollution">
-        <ul>
-            <li>indeks SO2</li>
-            <li>indeks NO2</li>
-            <li>indeks CO</li>
-            e
-        </ul>
+        <div id="left">
+            <ul>
+                {% for pollutant in pollution.left %}
+                    <li>
+                        <input type="radio" name="pollutant" value="{{ pollutant }}">
+                        <label>{{ pollutant }}</label>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div id="middle">
+            <ul>
+                {% for pollutant in pollution.middle %}
+                    <li>
+                        <input type="radio" name="pollutant" value="{{ pollutant }}">
+                        <label>{{ pollutant }}</label>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div id="right">
+            <ul>
+                {% for pollutant in pollution.right %}
+                    <li>
+                        <input type="radio" name="pollutant" value="{{ pollutant }}">
+                        <label>{{ pollutant }}</label>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
+    <h3>Legenda</h3>
     <div id="legend">
         <ul>
-            <li>Bardzo dobry</li>
-            <li>Dobry</li>
-            <li>Średni</li>
-            <li>Zły</li>
-            <li>Bardzo zły</li>
+            <li>
+                <span>0 - 50 µg/m<sup>3</sup></span>
+                <span style="background-color:#57b108; color: #ffffff">Bardzo dobry</span>
+            </li>
+            <li>
+                <span>0 - 50 µg/m<sup>3</sup></span>
+                <span style="background-color:#b0dd10; color: #373737">Dobry</span>
+            </li>
+            <li>
+                <span>0 - 50 µg/m<sup>3</sup></span>
+                <span style="background-color: #ffd911; color: #373737">Umiarkowany</span>
+            </li>
+            <li>
+                <span>0 - 50 µg/m<sup>3</sup></span>
+                <span style="background-color:#e58100; color: #ffffff">Dostateczny</span>
+            </li>
+            <li>
+                <span>0 - 50 µg/m<sup>3</sup></span>
+                <span style="background-color:#e50000; color: #ffffff">Zły</span>
+            </li>
+            <li>
+                <span>0 - 50 µg/m<sup>3</sup></span>
+                <span style="background-color:#990000; color: #ffffff">Bardzo zły</span>
+            </li>
+            <li>
+                <span>0 - 50 µg/m<sup>3</sup></span>
+                <span style="background:#bfbfbf; color: #000000;">Brak danych</span>
+            </li>
         </ul>
+    </div>
+    <div id="year_select">
+        <label>Wybierz miesiąc</label>
+        <select id="year" name="year">
+            {% for year in years%}
+                <option value="{{ year }}">{{ year }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div id="month_select">
+        <label>Wybierz rok</label>
+        <select id="month" name="month">
+            <option value="january">Styczeń</option>
+            <option value="february">Luty</option>
+            <option value="march">Marzec</option>
+            <option value="april">Kwiecień</option>
+            <option value="may">Maj</option>
+            <option value="june">Czerwiec</option>
+            <option value="july">Lipiec</option>
+            <option value="august">Sierpień</option>
+            <option value="september">Wrzesień</option>
+            <option value="october">Październik</option>
+            <option value="november">Listopad</option>
+            <option value="december">Grudzień</option>
+        </select>
     </div>
 </div>
 {% endblock %}
