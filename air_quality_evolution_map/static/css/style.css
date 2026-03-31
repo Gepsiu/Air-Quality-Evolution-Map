@@ -41,28 +41,42 @@ main {
 
 #pollution {
     display: flex;
+    justify-content: center;
+    align-items: flex-start;
 }
 
 #pollution div {
     margin: 10px;
 }
 
-#legend li {
+#legend {
     display: flex;
-    align-items: center;
+    justify-content: center;
 }
 
 #legend li span {
-    flex: 1;
+    display: inline-block;
+    width: 10vw;
     text-align: center;
-    height: 24px;
+    padding: 2px;
 }
+
+#month_select,
+#year_select {
+    text-align: center;
+}
+
+#year_select label,
+#month_select label{
+    display: block;
+    margin: 10px;
+}
+
 
 select {
     padding: 8px 12px;
     font-size: 14px;
     border: 1px solid #ccc;
-    border-radius: 6px;
     background-color: #fff;
     color: #333;
     cursor: pointer;
@@ -86,10 +100,53 @@ footer {
 }
 
 h3 {
+    text-align: center;
     margin: 10px;
 }
 
 ul > li {
 	padding: 2px;
 	list-style: none;
+}
+
+@media (max-width: 1480px) {
+    main {
+        flex-direction: column;
+    }
+
+    #map {
+        width: 100%;
+        min-height: 400px;
+    }
+
+    #info_panel {
+        width: 100%;
+    }
+
+    #legend li span {
+        width: 27vw;
+        padding: 1px;
+    }
+
+}
+
+@media (max-width: 768px) {
+    #header-text {
+        font-size: 20px;
+    }
+
+    #map {
+        min-height: 400px;
+    }
+
+
+    #pollution div {
+        margin: 5px;
+    }
+
+    #legend li span {
+        width: 30vw;
+        padding: 1px;
+    }
+
 }
