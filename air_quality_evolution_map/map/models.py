@@ -13,27 +13,14 @@ class Measurement(models.Model):
         db_table = "measurements"
 
 
-class MonthlyMeasurement(models.Model):
-    id = models.IntegerField(db_column="month_id", primary_key=True)
+class MeasurementAgg(models.Model):
+    id = models.IntegerField(db_column="id", primary_key=True)
     station = models.CharField(db_column="station", max_length=30)
     pollutant = models.CharField(db_column="pollutant", max_length=20)
-    month_start = models.DateField(db_column="month_start")
+    start_date = models.DateField(db_column="start_date")
     avg_value = models.DecimalField(db_column="avg_value", max_digits=10, decimal_places=2)
 
     class Meta:
         managed = False
-        db_table = "monthly_measurement"
-        indexes = [models.Index(fields=["station", "pollutant", "month_start"], name="idx_monthly_measurement")]
-
-
-class YearlyMeasurement(models.Model):
-    id = models.IntegerField(db_column="year_id", primary_key=True)
-    station = models.CharField(db_column="station", max_length=30)
-    pollutant = models.CharField(db_column="pollutant", max_length=20)
-    year_start = models.DateField(db_column="year_start")
-    avg_value = models.DecimalField(db_column="avg_value", max_digits=10, decimal_places=2)
-
-    class Meta:
-        managed = False
-        db_table = "yearly_measurement"
-        indexes = [models.Index(fields=["station", "pollutant", "year_start"], name="idx_yearly_measurement")]
+        db_table = "measurement_agg"
+        indexes = [models.Index(fields=["pollutant", "start_date"], name="idx_measurement_agg")]
