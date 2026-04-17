@@ -3,7 +3,7 @@ from django.db import models
 
 class Station(models.Model):
     code = models.CharField(max_length=40, primary_key=True)
-    outdated_code = models.CharField(max_length=40, unique=True, blank=True)
+    outdated_code = models.CharField(max_length=40, blank=True, null=True)
     voivodeship = models.CharField(max_length=20)
 
     def __str__(self):
