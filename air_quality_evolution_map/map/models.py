@@ -21,3 +21,15 @@ class Measurement(models.Model):
 
     class Meta:
         db_table = "measurements"
+
+
+class MeasurementAgg(models.Model):
+    id = models.IntegerField(db_column="id", primary_key=True)
+    voivodeship = models.CharField(db_column="station", max_length=20)
+    pollutant = models.CharField(db_column="pollutant", max_length=20)
+    start_date = models.DateField(db_column="start_date")
+    avg_value = models.DecimalField(db_column="avg_value", max_digits=10, decimal_places=2)
+
+    class Meta:
+        managed = False
+        db_table = "measurement_agg"
