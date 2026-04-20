@@ -1,9 +1,11 @@
 import json
+from datetime import date
 from pathlib import Path
 
+from django.http import JsonResponse
 from django.shortcuts import render
 
-from .models import Measurement
+from .models import Measurement, MeasurementAgg
 
 PROJECT_PATH = Path(__file__).resolve().parent.parent
 
@@ -32,3 +34,23 @@ def main(request):
                            "pollution": {"left": pollution_left, "middle": pollution_middle, "right": pollution_right},
                            'coord_provinces': coord_provinces,
                            "years": years})
+
+
+def map_data(request):
+    pollutant = request.GET.get("pollutant")
+    year = request.GET.get("year")
+    month = request.GET.get("month")
+
+    if not (pollutant and year and month):
+        return JsonResponse({}, status=400)
+
+    start_date = date(int(year), int(month), 1)
+
+    qs = MeasurementAgg.objects.filter(
+        pollutant=pollutant,
+        start_date=start_date,
+    ).values("voivodeship", "avg_value")
+
+    data = {item["voivodeship"]: float(item["avg_value"]) for item in qs}
+    print(data, pollutant, start_date)
+    return JsonResponse(data)
