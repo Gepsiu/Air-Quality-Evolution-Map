@@ -126,9 +126,9 @@ function updateMap(data) {
             const name = feature.properties.name;
             const pollution = data[name];
                 return L.circleMarker(latlng, {
-                radius: 10,
+                radius: 13,
                 fillColor: getColor(pollution),
-                weight: 1,
+                stroke: false,
                 fillOpacity: 0.8
             });
         },
