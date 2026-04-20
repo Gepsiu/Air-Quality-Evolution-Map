@@ -4,7 +4,7 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "dolnośląskie"
+        "name": "DOLNOŚLĄSKIE"
       },
       "geometry": {
         "type": "Point",
@@ -17,7 +17,7 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "kujawsko-pomorskie"
+        "name": "KUJAWSKO-POMORSKIE"
       },
       "geometry": {
         "type": "Point",
@@ -30,7 +30,7 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "lubelskie"
+        "name": "LUBELSKIE"
       },
       "geometry": {
         "type": "Point",
@@ -43,7 +43,7 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "lubuskie"
+        "name": "LUBUSKIE"
       },
       "geometry": {
         "type": "Point",
@@ -56,7 +56,7 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "łódzkie"
+        "name": "ŁÓDZKIE"
       },
       "geometry": {
         "type": "Point",
@@ -69,7 +69,7 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "małopolskie"
+        "name": "MAŁOPOLSKIE"
       },
       "geometry": {
         "type": "Point",
@@ -82,7 +82,7 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "mazowieckie"
+        "name": "MAZOWIECKIE"
       },
       "geometry": {
         "type": "Point",
@@ -95,7 +95,7 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "opolskie"
+        "name": "OPOLSKIE"
       },
       "geometry": {
         "type": "Point",
@@ -108,7 +108,7 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "podkarpackie"
+        "name": "PODKARPACKIE"
       },
       "geometry": {
         "type": "Point",
@@ -121,7 +121,7 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "podlaskie"
+        "name": "PODLASKIE"
       },
       "geometry": {
         "type": "Point",
@@ -134,7 +134,7 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "pomorskie"
+        "name": "POMORSKIE"
       },
       "geometry": {
         "type": "Point",
@@ -147,7 +147,7 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "śląskie"
+        "name": "ŚLĄSKIE"
       },
       "geometry": {
         "type": "Point",
@@ -160,7 +160,7 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "świętokrzyskie"
+        "name": "ŚWIĘTOKRZYSKIE"
       },
       "geometry": {
         "type": "Point",
@@ -173,7 +173,7 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "warmińsko-mazurskie"
+        "name": "WARMIŃSKO-MAZURSKIE"
       },
       "geometry": {
         "type": "Point",
@@ -186,7 +186,7 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "wielkopolskie"
+        "name": "WIELKOPOLSKIE"
       },
       "geometry": {
         "type": "Point",
@@ -199,7 +199,7 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "zachodniopomorskie"
+        "name": "ZACHODNIOPOMORSKIE"
       },
       "geometry": {
         "type": "Point",
