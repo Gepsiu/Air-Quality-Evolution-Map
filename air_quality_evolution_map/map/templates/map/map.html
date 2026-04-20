@@ -6,28 +6,12 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 {% endblock %}
 
-
 {% block content %}
+{{ coord_provinces|json_script:"coord-provinces" }}
 {{ geojson|json_script:"geojson-data" }}
-<div id="map">
-    <script>
-        let bounds = [[49.0, 14.1], [54.9, 24.2]]
-        const map = L.map('map', {
-              center: [52.0, 19.0],
-              zoom: 6,
-              minZoom: 5,
-              maxBounds: bounds,
-              maxBoundsViscosity: 0.5
-            });
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
-        }).addTo(map);
-        const geojsonData = JSON.parse(
-         document.getElementById("geojson-data").textContent
-        );
-        L.geoJSON(geojsonData).addTo(map);
-    </script>
-</div>
+
+<div id="map"></div>
+
 <div id="info_panel">
     <h3>Zanieczyszczenia</h3>
     <div id="pollution">
@@ -62,63 +46,126 @@
             </ul>
         </div>
     </div>
+
     <h3>Legenda</h3>
     <div id="legend">
         <ul>
-            <li>
-                <span>0 - 50 µg/m<sup>3</sup></span>
-                <span style="background-color:#57b108; color: #ffffff">Bardzo dobry</span>
-            </li>
-            <li>
-                <span>0 - 50 µg/m<sup>3</sup></span>
-                <span style="background-color:#b0dd10; color: #373737">Dobry</span>
-            </li>
-            <li>
-                <span>0 - 50 µg/m<sup>3</sup></span>
-                <span style="background-color: #ffd911; color: #373737">Umiarkowany</span>
-            </li>
-            <li>
-                <span>0 - 50 µg/m<sup>3</sup></span>
-                <span style="background-color:#e58100; color: #ffffff">Dostateczny</span>
-            </li>
-            <li>
-                <span>0 - 50 µg/m<sup>3</sup></span>
-                <span style="background-color:#e50000; color: #ffffff">Zły</span>
-            </li>
-            <li>
-                <span>0 - 50 µg/m<sup>3</sup></span>
-                <span style="background-color:#990000; color: #ffffff">Bardzo zły</span>
-            </li>
-            <li>
-                <span>0 - 50 µg/m<sup>3</sup></span>
-                <span style="background:#bfbfbf; color: #000000;">Brak danych</span>
-            </li>
+            <li><span>0-50</span><span style="background:#57b108;color:#fff">Bardzo dobry</span></li>
+            <li><span>50-100</span><span style="background:#b0dd10">Dobry</span></li>
+            <li><span>100-150</span><span style="background:#ffd911">Umiarkowany</span></li>
+            <li><span>150-200</span><span style="background:#e58100;color:#fff">Dostateczny</span></li>
+            <li><span>200-300</span><span style="background:#e50000;color:#fff">Zły</span></li>
+            <li><span>300+</span><span style="background:#990000;color:#fff">Bardzo zły</span></li>
+            <li><span>-</span><span style="background:#bfbfbf">Brak danych</span></li>
         </ul>
     </div>
+
     <div id="year_select">
-        <label>Wybierz rok</label>
-        <select id="year" name="year">
-            {% for year in years%}
+        <label>Rok</label>
+        <select id="year">
+            {% for year in years %}
                 <option value="{{ year }}">{{ year }}</option>
             {% endfor %}
         </select>
     </div>
+
     <div id="month_select">
-        <label>Wybierz miesiąc</label>
-        <select id="month" name="month">
-            <option value="january">Styczeń</option>
-            <option value="february">Luty</option>
-            <option value="march">Marzec</option>
-            <option value="april">Kwiecień</option>
-            <option value="may">Maj</option>
-            <option value="june">Czerwiec</option>
-            <option value="july">Lipiec</option>
-            <option value="august">Sierpień</option>
-            <option value="september">Wrzesień</option>
-            <option value="october">Październik</option>
-            <option value="november">Listopad</option>
-            <option value="december">Grudzień</option>
+        <label>Miesiąc</label>
+        <select id="month">
+            <option value="1">Styczeń</option>
+            <option value="2">Luty</option>
+            <option value="3">Marzec</option>
+            <option value="4">Kwiecień</option>
+            <option value="5">Maj</option>
+            <option value="6">Czerwiec</option>
+            <option value="7">Lipiec</option>
+            <option value="8">Sierpień</option>
+            <option value="9">Wrzesień</option>
+            <option value="10">Październik</option>
+            <option value="11">Listopad</option>
+            <option value="12">Grudzień</option>
         </select>
     </div>
 </div>
+{% endblock %}
+
+{% block domready %}
+
+let bounds = [[49.0, 14.1], [54.9, 24.2]];
+const map = L.map('map', {
+    center: [52.0, 19.0],
+    zoom: 6,
+    minZoom: 5,
+    maxBounds: bounds
+});
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+const geojsonData = JSON.parse(document.getElementById("geojson-data").textContent);
+L.geoJSON(geojsonData).addTo(map);
+const coordProvinces = JSON.parse(document.getElementById("coord-provinces").textContent);
+
+let markersLayer;
+
+function getColor(value) {
+    if (value == null) return '#bfbfbf';
+    if (value <= 50) return '#57b108';
+    if (value <= 100) return '#b0dd10';
+    if (value <= 150) return '#ffd911';
+    if (value <= 200) return '#e58100';
+    if (value <= 300) return '#e50000';
+    return '#990000';
+}
+
+function updateMap(data) {
+
+    if (markersLayer) {
+        map.removeLayer(markersLayer);
+    }
+    markersLayer = L.geoJSON(coordProvinces, {
+        pointToLayer: function(feature, latlng) {
+            const name = feature.properties.name;
+            const pollution = data[name];
+                return L.circleMarker(latlng, {
+                radius: 10,
+                fillColor: getColor(pollution),
+                weight: 1,
+                fillOpacity: 0.8
+            });
+        },
+        onEachFeature: function(feature, layer) {
+            const name = feature.properties.name;
+            const pollutant = data[name] ?? "Brak danych";
+
+            layer.bindPopup(
+                name + "<br>Zanieczyszczenie: " + pollutant
+            );
+        }
+    }).addTo(map);
+}
+
+function getSelectedPollutant() {
+    const selected = document.querySelector('input[name="pollutant"]:checked');
+    return selected ? selected.value : null;
+}
+
+function fetchData() {
+
+    const month = document.getElementById("month").value;
+    const year = document.getElementById("year").value;
+    const pollutant = getSelectedPollutant();
+
+    if (!pollutant) return;
+
+    fetch(`/map/data/?pollutant=${pollutant}&year=${year}&month=${month}`)
+        .then(res => res.json())
+        .then(data => updateMap(data));
+}
+
+document.getElementById("month").addEventListener("change", fetchData);
+document.getElementById("year").addEventListener("change", fetchData);
+
+document.querySelectorAll('input[name="pollutant"]').forEach(el => {
+    el.addEventListener("change", fetchData);
+});
+
 {% endblock %}
