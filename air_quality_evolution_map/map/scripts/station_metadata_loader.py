@@ -6,11 +6,12 @@ from openpyxl import load_workbook
 from sqlalchemy import create_engine
 
 env = environ.Env()
+PROJECT_PATH = Path(__file__).resolve().parent.parent
 
 ENGINE = create_engine(
     'postgresql+psycopg2://{}:{}@{}:{}/{}'.format(env("DB_USER"), env("DB_PASSWORD"),
                                                   env("DB_HOST"), env("DB_PORT"), env("DB_NAME")))
-FILE_PATH = r'C:\Users\d_pio\PycharmProjects\air_pollution\Metadane oraz kody stacji i stanowisk pomiarowych.xlsx'
+FILE_PATH = f'{PROJECT_PATH}\Metadane oraz kody stacji i stanowisk pomiarowych.xlsx'
 
 
 def update_table(df: pd.DataFrame, table_name: str):
@@ -27,12 +28,31 @@ def update_table(df: pd.DataFrame, table_name: str):
 def file_converter(path: str) -> pd.DataFrame:
     workbook = load_workbook(path)
     ws = workbook.active
+    regex = r"^\s*$"
 
-    station_code = list(ws.iter_cols(min_col=2, min_row=2, max_col=2, values_only=True))[0]
-    voivodeship = list(ws.iter_cols(min_col=11, min_row=2, max_col=11, values_only=True))[0]
-    outdated_station_code = list(ws.iter_cols(min_col=5, min_row=2, max_col=5, values_only=True))[0]
-    rows = list(zip(station_code, voivodeship, outdated_station_code))
-    return pd.DataFrame(rows).dropna(how='all')
+    station_code = next(ws.iter_cols(min_col=2, min_row=2, max_col=2, values_only=True))
+    voivodeship = next(ws.iter_cols(min_col=11, min_row=2, max_col=11, values_only=True))
+    outdated_station_code = next(ws.iter_cols(min_col=5, min_row=2, max_col=5, values_only=True))
+    df = pd.DataFrame({
+        "code": station_code,
+        "voivodeship": voivodeship
+    }).dropna(how="all")
+    df_outdated = pd.DataFrame({
+        "code": outdated_station_code,
+        "voivodeship": voivodeship
+    }).dropna(how="all")
+    df = df.replace(regex, pd.NA, regex=True)
+    df = df.dropna(subset=["code"])
+    df_outdated = df_outdated.replace(regex, pd.NA, regex=True)
+    df_outdated = df_outdated.dropna(subset=["code"])
+    df_outdated["code"] = df_outdated["code"].astype(str).str.split(",")
+    df_outdated = df_outdated.explode("code")
+    df_outdated["code"] = df_outdated["code"].str.strip()
+    df_outdated = df_outdated.replace(regex, pd.NA, regex=True)
+    df_outdated = df_outdated.dropna(subset=["code"])
+    df = pd.concat([df, df_outdated], ignore_index=True)
+    df = df.drop_duplicates(subset=["code"])
+    return df
 
 
 def process_file(path):
