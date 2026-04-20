@@ -28,31 +28,31 @@ def update_table(df: pd.DataFrame, table_name: str):
 def file_converter(path: str) -> pd.DataFrame:
     workbook = load_workbook(path)
     ws = workbook.active
+    regex = r"^\s*$"
 
     station_code = next(ws.iter_cols(min_col=2, min_row=2, max_col=2, values_only=True))
     voivodeship = next(ws.iter_cols(min_col=11, min_row=2, max_col=11, values_only=True))
     outdated_station_code = next(ws.iter_cols(min_col=5, min_row=2, max_col=5, values_only=True))
-    df = pd.DataFrame({
+
+    def clean(df: pd.DataFrame, regex = r"^\s*$"):
+        return df.replace(regex, pd.NA, regex=True).dropna(subset=["code"])
+
+    df = clean(pd.DataFrame({
         "code": station_code,
         "voivodeship": voivodeship
-    }).dropna(how="all")
-    df_outdated = pd.DataFrame({
+    }).dropna(how="all"))
+    df_outdated = clean(pd.DataFrame({
         "code": outdated_station_code,
         "voivodeship": voivodeship
-    }).dropna(how="all")
-    df = df.replace(r"^\s*$", pd.NA, regex=True)
-    df = df.dropna(subset=["code"])
-    df_outdated = df_outdated.replace(r"^\s*$", pd.NA, regex=True)
-    df_outdated = df_outdated.dropna(subset=["code"])
+    }).dropna(how="all"))
+
     df_outdated["code"] = df_outdated["code"].astype(str).str.split(",")
     df_outdated = df_outdated.explode("code")
     df_outdated["code"] = df_outdated["code"].str.strip()
-    df_outdated = df_outdated.replace(r"^\s*$", pd.NA, regex=True)
-    df_outdated = df_outdated.dropna(subset=["code"])
+
     df = pd.concat([df, df_outdated], ignore_index=True)
     df = df.drop_duplicates(subset=["code"])
     return df
-
 
 
 def process_file(path):
