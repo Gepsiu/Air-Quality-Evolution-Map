@@ -14,7 +14,7 @@ ENGINE = create_engine(
                                                   env("DB_HOST"), env("DB_PORT"), env("DB_NAME")))
 
 PROJECT_PATH = Path(__file__).resolve().parent.parent.parent
-BASE_DIR = f'{PROJECT_PATH}\data\pollution_data'
+BASE_DIR = fr'{PROJECT_PATH}\data\pollution_data'
 
 
 def create_directory(path):
