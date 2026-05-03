@@ -28,13 +28,12 @@ def update_table(df: pd.DataFrame, table_name: str):
 def file_converter(path: str) -> pd.DataFrame:
     workbook = load_workbook(path)
     ws = workbook.active
-    regex = r"^\s*$"
 
     station_code = next(ws.iter_cols(min_col=2, min_row=2, max_col=2, values_only=True))
     voivodeship = next(ws.iter_cols(min_col=11, min_row=2, max_col=11, values_only=True))
     outdated_station_code = next(ws.iter_cols(min_col=5, min_row=2, max_col=5, values_only=True))
 
-    def clean(df: pd.DataFrame, regex = r"^\s*$"):
+    def clean(df: pd.DataFrame, regex=r"^\s*$"):
         return df.replace(regex, pd.NA, regex=True).dropna(subset=["code"])
 
     df = clean(pd.DataFrame({
