@@ -1,5 +1,6 @@
 import os
 import shutil
+from pathlib import Path
 
 import environ
 import pandas as pd
@@ -11,7 +12,9 @@ env = environ.Env()
 ENGINE = create_engine(
     'postgresql+psycopg2://{}:{}@{}:{}/{}'.format(env("DB_USER"), env("DB_PASSWORD"),
                                                   env("DB_HOST"), env("DB_PORT"), env("DB_NAME")))
-BASE_DIR = r'C:\Users\d_pio\PycharmProjects\air_pollution\pollution_data'
+
+PROJECT_PATH = Path(__file__).resolve().parent.parent.parent
+BASE_DIR = f'{PROJECT_PATH}\data\pollution_data'
 
 
 def create_directory(path):
