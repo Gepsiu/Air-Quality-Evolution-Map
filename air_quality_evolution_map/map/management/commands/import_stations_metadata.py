@@ -11,4 +11,4 @@ class Command(BaseCommand):
             stations_metadata_loader.main()
         except Exception as e:
             self.stdout.write(self.style.ERROR(f"ERROR: {e}"))
-        self.stdout.write(self.style.SUCCESS("Finished importing pollution data"))
+        self.stdout.write(self.style.SUCCESS("Finished importing stations metadata"))
