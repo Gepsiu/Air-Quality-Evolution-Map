@@ -21,9 +21,9 @@ def load_coord(path: str):
 
 
 def main(request):
-    geojson = load_coord(f'{PROJECT_PATH}\static\geo\wojewodztwa-max.geojson')
-    coord_provinces = load_coord(f'{PROJECT_PATH}\static\geo\coord_provinces.json')
-    legend = load_coord(f'{PROJECT_PATH}\static\legend\legend.json')
+    geojson = load_coord(str(PROJECT_PATH / "static" / "geo" / "wojewodztwa-max.geojson"))
+    coord_provinces = load_coord(str(PROJECT_PATH / "static" / "geo" / "coord_provinces.json"))
+    legend = load_coord(str(PROJECT_PATH / "static" / "legend" / "legend.json"))
     pollution = Measurement.objects.values_list("pollutant", flat=True).distinct()
     pollution_left = [pollution[pollutant] for pollutant in range(0, len(pollution), 3)]
     pollution_middle = [pollution[pollutant] for pollutant in range(1, len(pollution), 3)]

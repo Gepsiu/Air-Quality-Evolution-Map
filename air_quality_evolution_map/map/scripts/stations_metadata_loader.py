@@ -11,7 +11,7 @@ PROJECT_PATH = Path(__file__).resolve().parent.parent.parent
 ENGINE = create_engine(
     'postgresql+psycopg2://{}:{}@{}:{}/{}'.format(env("DB_USER"), env("DB_PASSWORD"),
                                                   env("DB_HOST"), env("DB_PORT"), env("DB_NAME")))
-FILE_PATH = f'{PROJECT_PATH}\data\stations_metadata\Metadane oraz kody stacji i stanowisk pomiarowych.xlsx'
+FILE_PATH = (PROJECT_PATH / "data" / "stations_metadata" / "Metadane oraz kody stacji i stanowisk pomiarowych.xlsx")
 
 
 def update_table(df: pd.DataFrame, table_name: str):
