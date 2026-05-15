@@ -32,3 +32,25 @@ class MeasurementAgg(models.Model):
     class Meta:
         managed = False
         db_table = "measurement_agg"
+
+
+class Legend(models.Model):
+    pollutant = models.CharField(max_length=20)
+    unit = models.CharField(max_length=7)
+
+    def __str__(self):
+        return self.pollutant
+
+
+class LegendLevel(models.Model):
+    legend = models.ForeignKey(Legend, related_name="levels", on_delete=models.CASCADE)
+    order = models.PositiveIntegerField()
+    label = models.CharField(max_length=15)
+    limit = models.FloatField(null=True, blank=True)
+    color = models.CharField(max_length=20)
+
+    class Meta:
+        ordering = ["order"]
+
+    def __str__(self):
+        return f"{self.legend.pollutant} - {self.label}"
