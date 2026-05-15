@@ -49,17 +49,7 @@
     </div>
 
     <h3>Legenda</h3>
-    <div id="legend">
-        <ul>
-            <li><span>-</span><span style="background:#57b108;color:#fff">Bardzo dobry</span></li>
-            <li><span>-</span><span style="background:#b0dd10">Dobry</span></li>
-            <li><span>-</span><span style="background:#ffd911">Umiarkowany</span></li>
-            <li><span>-</span><span style="background:#e58100;color:#fff">Dostateczny</span></li>
-            <li><span>-</span><span style="background:#e50000;color:#fff">Zły</span></li>
-            <li><span>-</span><span style="background:#990000;color:#fff">Bardzo zły</span></li>
-            <li><span>-</span><span style="background:#bfbfbf">Brak danych</span></li>
-        </ul>
-    </div>
+    <div id="legend"></div>
 
     <div id="year_select">
         <label>Rok</label>
@@ -166,13 +156,12 @@ function renderLegend(pollutant) {
     for (let i = 0; i < scale.labels.length; i++) {
 
         const from = i === 0 ? 0 : scale.limits[i - 1];
-        const isLast = i >= scale.limits.length;
+        const to = scale.limits[i];
         let range;
 
-        if (isLast) {
+        if (to == null) {
             range = `${from}+`;
         } else {
-            const to = scale.limits[i];
             range = `${from}-${to}`;
         }
         html += `
@@ -191,7 +180,6 @@ function renderLegend(pollutant) {
         </li>
     `;
     html += "</ul>";
-
     document.getElementById("legend").innerHTML = html;
 }
 
