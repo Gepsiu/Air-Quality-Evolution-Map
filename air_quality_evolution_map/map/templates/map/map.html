@@ -98,23 +98,19 @@ const pollutionScale = JSON.parse(document.getElementById("pollution-scale").tex
 
 let markersLayer;
 
-function getColor(value, pollutant) {
+function getColor(value, scale) {
     if (value == null) return '#bfbfbf';
-    const scale = pollutionScale[pollutant];
     const limits = scale.limits;
-
-    const colors = ["#57b108","#b0dd10","#ffd911","#e58100","#e50000","#990000"];
-
+    const colors = scale.colors;
     for (let i = 0; i < limits.length; i++) {
         if (value <= limits[i]) {
             return colors[i];
         }
     }
-
     return colors[colors.length - 1];
 }
 
-function updateMap(data, pollutant) {
+function updateMap(data, pollutant, scale) {
 
     if (markersLayer) {
         map.removeLayer(markersLayer);
@@ -125,7 +121,7 @@ function updateMap(data, pollutant) {
             const value = data[name];
                 return L.circleMarker(latlng, {
                 radius: 13,
-                fillColor: getColor(value, pollutant),
+                fillColor: getColor(value, scale),
                 stroke: false,
                 fillOpacity: 1
             });
@@ -150,8 +146,6 @@ function renderLegend(pollutant) {
 
     const scale = pollutionScale[pollutant];
     if (!scale) return;
-
-    const colors = ["#57b108","#b0dd10","#ffd911","#e58100","#e50000","#990000"];
     let html = "<ul>";
     for (let i = 0; i < scale.labels.length; i++) {
 
@@ -167,7 +161,7 @@ function renderLegend(pollutant) {
         html += `
             <li>
                 <span>${range} ${scale.unit}</span>
-                <span style="background:${colors[i]};color:#fff">
+                <span style="background:${scale.colors[i]};color:#fff">
                     ${scale.labels[i]}
                 </span>
             </li>
@@ -190,10 +184,11 @@ function fetchData() {
     const pollutant = getSelectedPollutant();
 
     if (!pollutant) return;
+    const scale = pollutionScale[pollutant];
 
     fetch(`/map/data/?pollutant=${pollutant}&year=${year}&month=${month}`)
         .then(res => res.json())
-        .then(data => updateMap(data, pollutant));
+        .then(data => updateMap(data, pollutant, scale));
 }
 
 document.getElementById("month").addEventListener("change", fetchData);
