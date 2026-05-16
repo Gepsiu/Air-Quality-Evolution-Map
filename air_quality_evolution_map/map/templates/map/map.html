@@ -20,7 +20,7 @@
             <ul>
                 {% for pollutant in pollution.left %}
                     <li>
-                        <input type="radio" name="pollutant" value="{{ pollutant }}">
+                        <input type="radio" name="pollutant" value="{{ pollutant }}" autocomplete="off">
                         <label>{{ pollutant }}</label>
                     </li>
                 {% endfor %}
@@ -30,7 +30,7 @@
             <ul>
                 {% for pollutant in pollution.middle %}
                     <li>
-                        <input type="radio" name="pollutant" value="{{ pollutant }}">
+                        <input type="radio" name="pollutant" value="{{ pollutant }}" autocomplete="off">
                         <label>{{ pollutant }}</label>
                     </li>
                 {% endfor %}
@@ -40,7 +40,7 @@
             <ul>
                 {% for pollutant in pollution.right %}
                     <li>
-                        <input type="radio" name="pollutant" value="{{ pollutant }}">
+                        <input type="radio" name="pollutant" value="{{ pollutant }}" autocomplete="off">
                         <label>{{ pollutant }}</label>
                     </li>
                 {% endfor %}
