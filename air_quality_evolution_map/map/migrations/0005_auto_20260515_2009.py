@@ -249,7 +249,7 @@ def create_legends(apps, schema_editor):
             if index < len(config["limits"]):
                 limit = config["limits"][index]
             else:
-                continue
+                limit = None
 
             LegendLevel.objects.get_or_create(
                 legend=legend,
