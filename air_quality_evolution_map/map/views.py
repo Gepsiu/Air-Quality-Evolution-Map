@@ -59,7 +59,12 @@ def map_data(request):
     if not (pollutant and year and month):
         return JsonResponse({}, status=400)
 
-    start_date = date(int(year), int(month), 1)
+    try:
+        year = int(year)
+        month = int(month)
+        start_date = date(year, month, 1)
+    except (ValueError, TypeError):
+        return JsonResponse({"error": "Invalid date"}, status=400)
 
     qs = MeasurementAgg.objects.filter(
         pollutant=pollutant,
