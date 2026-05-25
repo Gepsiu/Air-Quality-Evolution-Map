@@ -77,6 +77,19 @@
             <option value="12">Grudzień</option>
         </select>
     </div>
+
+        <h3>Średnie wartości</h3>
+    <div id="table">
+        <table id="pollution_table">
+            <thead>
+                <tr>
+                    <th>Województwo</th>
+                    <th id="pollutant_header">-</th>
+                </tr>
+            </thead>
+            <tbody id="table_body"></tbody>
+        </table>
+    </div>
 </div>
 {% endblock %}
 
@@ -127,12 +140,7 @@ function updateMap(data, pollutant, scale) {
             });
         },
         onEachFeature: function(feature, layer) {
-            const name = feature.properties.name;
-            const pollutant = data[name] ?? "Brak danych";
-
-            layer.bindPopup(
-                name + "<br>Zanieczyszczenie: " + pollutant
-            );
+            layer.bindPopup(feature.properties.name);
         }
     }).addTo(map);
 }
@@ -177,6 +185,28 @@ function renderLegend(pollutant) {
     document.getElementById("legend").innerHTML = html;
 }
 
+function renderTable(data, pollutant) {
+    document.getElementById("pollutant_header").textContent = pollutant;
+    const tableBody = document.getElementById("table_body");
+    tableBody.innerHTML = "";
+    const provinces = coordProvinces.features.map(f => f.properties.name);
+    provinces.forEach(province => {
+        const rawValue = data[province];
+        let value;
+        if (rawValue != null) {
+            value = Number(rawValue).toFixed(2);
+        } else {
+            value = "-";
+        }
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            <td>${province}</td>
+            <td>${value}</td>
+        `;
+        tableBody.appendChild(row);
+    });
+}
+
 function fetchData() {
 
     const month = document.getElementById("month").value;
@@ -188,7 +218,10 @@ function fetchData() {
 
     fetch(`/map/data/?pollutant=${pollutant}&year=${year}&month=${month}`)
         .then(res => res.json())
-        .then(data => updateMap(data, pollutant, scale));
+        .then(data => {
+                updateMap(data, pollutant, scale);
+                renderTable(data, pollutant);
+        });
 }
 
 document.getElementById("month").addEventListener("change", fetchData);
