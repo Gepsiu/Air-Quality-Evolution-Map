@@ -13,7 +13,7 @@ body {
 
 header {
 	background: linear-gradient(90deg, #0f172a, #1e2a8b);
-	color: white;
+	color: #fff;
 	text-align: center;
 	padding: 20px;
 }
@@ -59,6 +59,40 @@ main {
     width: 10vw;
     text-align: center;
     padding: 2px;
+}
+
+#table {
+    margin: 15px;
+}
+
+#pollution_table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#pollution_table thead {
+    background: linear-gradient(90deg, #0f172a, #1e2a8b);
+    color: #fff;
+    font-weight: 600;
+}
+
+#pollution_table th,
+#pollution_table td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+#pollution_table th:first-child,
+#pollution_table td:first-child {
+    text-align: left;
+}
+
+#pollution_table tbody tr:nth-child(even) {
+    background: #fafafa;
 }
 
 #month_select,
@@ -126,6 +160,11 @@ ul > li {
     #legend li span {
         width: 27vw;
         padding: 1px;
+    }
+
+    #table {
+        width: 70%;
+        margin: 15px auto;
     }
 
 }
