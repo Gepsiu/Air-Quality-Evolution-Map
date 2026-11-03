@@ -95,6 +95,7 @@
 
 {% block domready %}
 
+L.TileLayer.prototype.options.referrerPolicy = 'strict-origin-when-cross-origin';
 let bounds = [[49.0, 14.1], [54.9, 24.2]];
 const map = L.map('map', {
     center: [52.0, 19.0],
